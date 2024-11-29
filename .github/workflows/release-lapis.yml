@@ -9,6 +9,7 @@ on:
 env:
   LAPIS_DOCKER_IMAGE_NAME: ghcr.io/fengelniederhammer/lapis
   DOCS_DOCKER_IMAGE_NAME: ghcr.io/fengelniederhammer/lapis-docs
+  
 
 jobs:
   release-please:
