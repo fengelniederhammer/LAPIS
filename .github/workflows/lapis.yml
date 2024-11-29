@@ -41,7 +41,6 @@ jobs:
           tags: ${{ steps.dockerMetadata.outputs.tags }}
           cache-from: type=gha,scope=lapis-${{ github.ref }}
           cache-to: type=gha,mode=max,scope=lapis-${{ github.ref }}
-          platforms: linux/amd64
           push: true
           build-args: |
             VERSION=${{ github.sha }}

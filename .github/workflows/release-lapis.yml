@@ -57,7 +57,7 @@ jobs:
         id: dockerMetadata
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.DOCKER_IMAGE_NAME }}
+          images: ${{ env.LAPIS_DOCKER_IMAGE_NAME }}
           tags: |
             type=raw,value=${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}
             type=raw,value=${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}.${{ steps.release.outputs.patch }}
@@ -70,10 +70,19 @@ jobs:
           tags: ${{ steps.dockerMetadata.outputs.tags }}
           cache-from: type=gha,scope=lapis-${{ github.ref }}
           cache-to: type=gha,mode=max,scope=lapis-${{ github.ref }}
-          platforms: linux/amd64
           push: true
           build-args: |
             VERSION=${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}.${{ steps.release.outputs.patch }}
+
+      - name: Docker metadata
+        if: ${{ steps.release.outputs.release_created }}
+        id: dockerMetadataDocs
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.DOCS_DOCKER_IMAGE_NAME }}
+          tags: |
+            type=raw,value=${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}
+            type=raw,value=${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}.${{ steps.release.outputs.patch }}
 
       - name: Build and push LAPIS Docs image
         if: ${{ steps.release.outputs.release_created }}
@@ -81,7 +90,7 @@ jobs:
         with:
           context: ./lapis-docs
           push: true
-          tags: ${{ steps.dockerMetadata.outputs.tags }}
+          tags: ${{ steps.dockerMetadataDocs.outputs.tags }}
           cache-from: type=gha,scope=lapis-docs-${{ github.ref }}
           cache-to: type=gha,mode=max,scope=lapis-docs-${{ github.ref }}
           build-args: |
