@@ -48,10 +48,10 @@ jobs:
         with:
           images: ${{ env.DOCKER_IMAGE_NAME }}
           tags: |
-            type=ref,event=branch
+            type=ref,event=branch,enable=${{ github.ref != format('refs/heads/{0}', 'main') }}
             type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'main') }}
 
-      - name: Build and push image
+      - name: Build application image
         uses: docker/build-push-action@v6
         with:
           context: ./lapis
@@ -59,7 +59,19 @@ jobs:
           cache-from: type=gha,scope=lapis-${{ github.ref }}
           cache-to: type=gha,mode=max,scope=lapis-${{ github.ref }}
           platforms: ${{ github.ref == 'refs/heads/main' && 'linux/amd64,linux/arm64' || 'linux/amd64' }}
+          push: false
+
+      - name: Build and push versioned image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./lapis
+          file: ./lapis/Dockerfile_versionSupplier
+          tags: ${{ steps.dockerMetadata.outputs.tags }}
+          platforms: ${{ github.ref == 'refs/heads/main' && 'linux/amd64,linux/arm64' || 'linux/amd64' }}
           push: true
+          build-args: |
+            BASE_IMAGE=${{ steps.dockerMetadata.outputs.tags }}
+            VERSION=${{ github.sha }}
 
   endToEndTests:
     runs-on: ubuntu-latest
