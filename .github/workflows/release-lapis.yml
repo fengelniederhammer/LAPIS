@@ -65,8 +65,8 @@ jobs:
         with:
           images: ${{ env.DOCKER_IMAGE_NAME }}
           tags: |
-            type=raw,value="${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}"
-            type=raw,value="${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}.${{ steps.release.outputs.patch }}"
+            type=raw,value=${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}
+            type=raw,value=${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}.${{ steps.release.outputs.patch }}
 
       - name: Build and push LAPIS image
         uses: docker/build-push-action@v6
@@ -78,7 +78,7 @@ jobs:
           platforms: linux/amd64
           push: true
           build-args: |
-            VERSION="${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}.${{ steps.release.outputs.patch }}"
+            VERSION=${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}.${{ steps.release.outputs.patch }}
 
       - name: Build and push LAPIS Docs image
         uses: docker/build-push-action@v6
@@ -89,4 +89,4 @@ jobs:
           cache-from: type=gha,scope=lapis-docs-${{ github.ref }}
           cache-to: type=gha,mode=max,scope=lapis-docs-${{ github.ref }}
           build-args: |
-            VERSION="${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}.${{ steps.release.outputs.patch }}"
+            VERSION=${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}.${{ steps.release.outputs.patch }}
