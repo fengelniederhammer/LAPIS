@@ -40,7 +40,7 @@ data class LapisInfo(
         description = VERSION_DESCRIPTION,
         example = "1.2.3",
     )
-    val version: String? = null,
+    val lapisVersion: String? = null,
 )
 
 data class NucleotideMutationResponse(

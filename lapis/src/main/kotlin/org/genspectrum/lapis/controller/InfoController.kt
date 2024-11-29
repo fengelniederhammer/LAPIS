@@ -30,7 +30,7 @@ class InfoController(
         val siloInfo = siloQueryModel.getInfo()
         return LapisInfo(
             dataVersion = siloInfo.dataVersion,
-            version = lapisVersion.version,
+            lapisVersion = lapisVersion.version,
         )
     }
 

@@ -54,7 +54,7 @@ class LapisInfoResponseBodyAdvice(
             dataVersion = dataVersion.dataVersion,
             requestId = requestIdContext.requestId,
             requestInfo = "${databaseConfig.schema.instanceName} on ${request.uri.host} at ${now()}",
-            version = lapisVersion.version,
+            lapisVersion = lapisVersion.version,
         )
 
     private fun now(): String {
