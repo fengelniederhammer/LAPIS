@@ -1,7 +1,7 @@
-ARG BASE_IMAGE
+ARG BASE_IMAGE="ghcr.io/genspectrum/lapis"
 
 FROM ${BASE_IMAGE}
 
-ARG VERSION
+ARG VERSION="unspecified"
 
 RUN echo ${VERSION} > /workspace/version.txt
