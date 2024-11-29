@@ -3,7 +3,7 @@ name: LAPIS
 on: [ push ]
 
 env:
-  DOCKER_IMAGE_NAME: ghcr.io/genspectrum/lapis
+  DOCKER_IMAGE_NAME: ghcr.io/fengelniederhammer/lapis
 
 jobs:
   Tests:

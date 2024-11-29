@@ -7,8 +7,8 @@ on:
     branches: [main]
 
 env:
-  LAPIS_DOCKER_IMAGE_NAME: ghcr.io/genspectrum/lapis
-  DOCS_DOCKER_IMAGE_NAME: ghcr.io/genspectrum/lapis-docs
+  LAPIS_DOCKER_IMAGE_NAME: ghcr.io/fengelniederhammer/lapis
+  DOCS_DOCKER_IMAGE_NAME: ghcr.io/fengelniederhammer/lapis-docs
 
 jobs:
   release-please:

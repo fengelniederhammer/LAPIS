@@ -3,7 +3,7 @@ name: LAPIS Docs
 on: [push]
 
 env:
-  DOCKER_IMAGE_NAME: ghcr.io/genspectrum/lapis-docs
+  DOCKER_IMAGE_NAME: ghcr.io/fengelniederhammer/lapis-docs
 
 defaults:
   run:
