@@ -77,7 +77,6 @@ jobs:
           platforms: ${{ github.ref == 'refs/heads/main' && 'linux/amd64,linux/arm64' || 'linux/amd64' }}
           push: true
           build-args: |
-            BASE_IMAGE=temp-lapis-image
             VERSION="${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}.${{ steps.release.outputs.patch }}"
 
       - name: Build and push LAPIS Docs image
@@ -89,5 +88,4 @@ jobs:
           cache-from: type=gha,scope=lapis-docs-${{ github.ref }}
           cache-to: type=gha,mode=max,scope=lapis-docs-${{ github.ref }}
           build-args: |
-            BASE_IMAGE=temp-lapis-image
             VERSION="${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}.${{ steps.release.outputs.patch }}"
