@@ -19,7 +19,7 @@ jobs:
       pull-requests: write
       packages: write
       checks: read
-    if: ${{ github.event.workflow_run.conclusion == 'success' && github.repository == 'GenSpectrum/LAPIS' }}
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - uses: googleapis/release-please-action@v4
         id: release
