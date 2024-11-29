@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.11](https://github.com/fengelniederhammer/LAPIS/compare/v0.3.10...v0.3.11) (2024-11-29)
+
+
+### Bug Fixes
+
+* image name ([8e93532](https://github.com/fengelniederhammer/LAPIS/commit/8e93532bb1cd9369fef416d6d18e3cdcd63e9cea))
+
 ## [0.3.10](https://github.com/fengelniederhammer/LAPIS/compare/v0.3.9...v0.3.10) (2024-11-29)
 
 
