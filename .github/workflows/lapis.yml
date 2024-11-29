@@ -55,7 +55,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: ./lapis
-          tags: tempLapisImage
+          tags: temp-lapis-image
           load: true
           cache-from: type=gha,scope=lapis-${{ github.ref }}
           cache-to: type=gha,mode=max,scope=lapis-${{ github.ref }}
@@ -71,7 +71,7 @@ jobs:
           platforms: ${{ github.ref == 'refs/heads/main' && 'linux/amd64,linux/arm64' || 'linux/amd64' }}
           push: true
           build-args: |
-            BASE_IMAGE=tempLapisImage
+            BASE_IMAGE=temp-lapis-image
             VERSION=${{ github.sha }}
 
   endToEndTests:
