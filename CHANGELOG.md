@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.10](https://github.com/fengelniederhammer/LAPIS/compare/v0.3.9...v0.3.10) (2024-11-29)
+
+
+### Features
+
+* do more ([a3a1505](https://github.com/fengelniederhammer/LAPIS/commit/a3a15050faa6640ff62f31ddafc34f7db713f71a))
+* **lapis:** do something ([92eb94e](https://github.com/fengelniederhammer/LAPIS/commit/92eb94e9725a83523abcdd35e69450b205c969de))
+
 ## [0.3.9](https://github.com/GenSpectrum/LAPIS/compare/v0.3.8...v0.3.9) (2024-11-14)
 
 
