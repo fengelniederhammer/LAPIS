@@ -2,6 +2,7 @@ package org.genspectrum.lapis.controller
 
 import io.swagger.v3.oas.annotations.Operation
 import org.genspectrum.lapis.config.DatabaseConfig
+import org.genspectrum.lapis.config.LapisVersion
 import org.genspectrum.lapis.config.ReferenceGenome
 import org.genspectrum.lapis.controller.LapisMediaType.APPLICATION_YAML_VALUE
 import org.genspectrum.lapis.model.SiloQueryModel
@@ -21,12 +22,16 @@ class InfoController(
     private val siloQueryModel: SiloQueryModel,
     private val databaseConfig: DatabaseConfig,
     private val referenceGenome: ReferenceGenome,
+    private val lapisVersion: LapisVersion,
 ) {
     @GetMapping(INFO_ROUTE, produces = [MediaType.APPLICATION_JSON_VALUE])
     @Operation(description = INFO_ENDPOINT_DESCRIPTION)
     fun getInfo(): LapisInfo {
         val siloInfo = siloQueryModel.getInfo()
-        return LapisInfo(siloInfo.dataVersion)
+        return LapisInfo(
+            dataVersion = siloInfo.dataVersion,
+            lapisVersion = lapisVersion.version,
+        )
     }
 
     @GetMapping(DATABASE_CONFIG_ROUTE, produces = [MediaType.APPLICATION_JSON_VALUE, APPLICATION_YAML_VALUE])

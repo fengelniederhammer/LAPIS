@@ -4,6 +4,7 @@ import kotlinx.datetime.Clock
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 import org.genspectrum.lapis.config.DatabaseConfig
+import org.genspectrum.lapis.config.LapisVersion
 import org.genspectrum.lapis.controller.LapisHeaders.LAPIS_DATA_VERSION
 import org.genspectrum.lapis.logging.RequestIdContext
 import org.genspectrum.lapis.response.LapisErrorResponse
@@ -24,6 +25,7 @@ class LapisInfoResponseBodyAdvice(
     private val dataVersion: DataVersion,
     private val requestIdContext: RequestIdContext,
     private val databaseConfig: DatabaseConfig,
+    private val lapisVersion: LapisVersion,
 ) : ResponseBodyAdvice<Any> {
     override fun beforeBodyWrite(
         body: Any?,
@@ -52,6 +54,7 @@ class LapisInfoResponseBodyAdvice(
             dataVersion = dataVersion.dataVersion,
             requestId = requestIdContext.requestId,
             requestInfo = "${databaseConfig.schema.instanceName} on ${request.uri.host} at ${now()}",
+            lapisVersion = lapisVersion.version,
         )
 
     private fun now(): String {
